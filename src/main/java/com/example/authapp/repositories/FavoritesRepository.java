@@ -1,6 +1,7 @@
 package com.example.authapp.repositories;
 
 import com.example.authapp.models.Component;
+import com.example.authapp.repositories.ComponentPriceRepository;
 import com.google.gson.*;
 
 import java.io.*;
@@ -61,6 +62,22 @@ public class FavoritesRepository {
             System.err.println("getFavorites failed: " + e.getMessage());
             return new ArrayList<>();
         }
+
+        // Загружаем цены
+        Map<Integer, double[]> priceMap;
+        try {
+            priceMap = ComponentPriceRepository.loadMinPricesMap();
+        } catch (Exception e) {
+            priceMap = new HashMap<>();
+        }
+        for (Component c : all) {
+            double[] agg = priceMap.get(c.getId());
+            if (agg != null) {
+                c.setMinPrice(agg[0]);
+                c.setOfferCount((int) agg[1]);
+            }
+        }
+
         List<Component> favorites = new ArrayList<>();
         for (int id : ids) {
             for (Component c : all) {

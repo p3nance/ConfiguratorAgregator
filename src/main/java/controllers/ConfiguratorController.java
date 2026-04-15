@@ -1,6 +1,7 @@
 package controllers;
 
 import com.example.authapp.models.Component;
+import com.example.authapp.repositories.BuildRepository;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
@@ -75,6 +76,9 @@ public class ConfiguratorController {
             selectedComponents.put(cat, null);
         }
 
+        // Load saved build
+        loadSavedBuild();
+
         compatStatusText.setWrapText(true);
         compatStatusText.maxWidthProperty().bind(compatStatusBox.widthProperty().subtract(40));
         if (cartStatusText != null) cartStatusText.setWrapText(true);
@@ -82,6 +86,15 @@ public class ConfiguratorController {
         if (sortBtn != null) {
             sortBtn.setOnAction(e -> cycleSortMode());
             updateSortButton();
+        }
+    }
+
+    private void loadSavedBuild() {
+        Map<String, Component> saved = BuildRepository.loadBuildComponents();
+        for (String cat : categoryNames) {
+            if (saved.containsKey(cat)) {
+                selectedComponents.put(cat, saved.get(cat));
+            }
         }
     }
 
@@ -259,6 +272,16 @@ public class ConfiguratorController {
     }
 
     private void recalcBuild() {
+        // Persist selection
+        Map<String, Integer> buildMap = new LinkedHashMap<>();
+        for (String cat : categoryNames) {
+            Component p = selectedComponents.get(cat);
+            if (p != null) {
+                buildMap.put(cat, p.getId());
+            }
+        }
+        BuildRepository.saveBuild(buildMap);
+
         componentsList.getItems().clear();
         double sum = 0;
         int count = 0;
