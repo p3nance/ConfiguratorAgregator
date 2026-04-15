@@ -1,0 +1,59 @@
+# Supabase REST API Queries
+# Base URL: {SUPABASE_URL}
+# Auth headers: Authorization: Bearer {SUPABASE_ANON_KEY}, apikey: {SUPABASE_ANON_KEY}
+# Content-Type: application/json
+
+# ============================================================
+# component table
+# ============================================================
+
+# Get components by category list (with optional search, limit, offset)
+# Used by: ComponentRepository.findByCategory, getTopComponentsByCategory, getAllCategories, getComponentById
+GET {SUPABASE_URL}/rest/v1/component?category=in.({category1},{category2},...)&search=ilike.*{query}*&limit={n}&offset={n}
+# Note: "search" param is a custom filter on name ILIKE; "limit"/"offset" for pagination
+
+# Get component by ID
+GET {SUPABASE_URL}/rest/v1/component?id=eq.{id}
+
+# Get all distinct categories
+GET {SUPABASE_URL}/rest/v1/component?select=category
+# Then client deduplicates categories from the result
+
+# ============================================================
+# component_price table
+# ============================================================
+
+# Get prices for a single component, ordered by price ascending
+# Used by: ComponentPriceRepository.findByComponentId
+GET {SUPABASE_URL}/rest/v1/component_price?component_id=eq.{id}&order=price.asc
+
+# Get prices for multiple component IDs, ordered by price ascending
+# Used by: ComponentPriceRepository.findByComponentIds
+GET {SUPABASE_URL}/rest/v1/component_price?component_id=in.({id1},{id2},...)&order=price.asc
+
+# Get paginated prices (limit/offset)
+# Used by: ComponentPriceRepository.findPricesWithLimitOffset
+GET {SUPABASE_URL}/rest/v1/component_price?component_id=in.({id1},{id2},...)&limit={n}&offset={n}
+
+# Get price for a specific component at a specific store
+# Used by: ComponentPriceRepository.findByComponentIdAndStoreId
+GET {SUPABASE_URL}/rest/v1/component_price?component_id=eq.{id}&store_id=eq.{storeId}
+
+# Get minimum price per component (grouped)
+# Used by: ComponentPriceRepository.findMinPriceByComponentId
+GET {SUPABASE_URL}/rest/v1/component_price?select=component_id,min_price&group_by=component_id
+# Note: client-side grouping in current implementation; Supabase doesn't support SQL GROUP BY via REST
+# Actual implementation: fetches all component_price rows, then groups client-side
+
+# ============================================================
+# store table
+# ============================================================
+
+# Get all stores
+# Used by: StoreRepository.findAll, getStoreByName
+GET {SUPABASE_URL}/rest/v1/store?select=*
+
+# Get store by name (client-side filter)
+# Used by: StoreRepository.getStoreByName
+GET {SUPABASE_URL}/rest/v1/store?select=*
+# Then client filters: store.name.equalsIgnoreCase({name})

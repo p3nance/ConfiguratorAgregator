@@ -1,0 +1,7 @@
+package config;
+
+public class Config {
+    public static final String SUPABASE_URL = "https://hzpoakknwkoqwzimpgln.supabase.co";
+    public static final String SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imh6cG9ha2tud2tvcXd6aW1wZ2xuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzYxNjg1MTAsImV4cCI6MjA5MTc0NDUxMH0.o6iuMX0PCb9h_QqKA0nDxMXEH1_dEkFv3RuI_KsUe4I";
+    public static final String SUPABASE_SERVICE_ROLE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFzdGh1aHprY2lpbXVjYXJzY2NvIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc1NzQyMzgxNSwiZXhwIjoyMDcyOTk5ODE1fQ.WQaeTsuXb3rdOvKuadz7Hnq3daQ3uBC0nlBnxRXhRZo";
+}

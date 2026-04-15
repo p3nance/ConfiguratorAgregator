@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="controllers.ComponentDetailController"
+            style="-fx-background-color: #f5f5f5;">
+
+    <top>
+        <HBox spacing="15" alignment="CENTER_LEFT"
+              style="-fx-padding: 15 25; -fx-background-color: #1e40af;">
+            <Button fx:id="backBtn" text="← Назад"
+                    style="-fx-background-color: rgba(255,255,255,0.1);
+                           -fx-text-fill: white; -fx-font-size: 13px; -fx-font-weight: bold;
+                           -fx-padding: 8 16; -fx-background-radius: 8; -fx-cursor: hand;"/>
+            <Label text="Карточка компонента"
+                   style="-fx-text-fill: white; -fx-font-size: 20px; -fx-font-weight: bold;"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Button fx:id="favoriteBtn" text="☆ В избранное"
+                    style="-fx-background-color: rgba(255,255,255,0.15);
+                           -fx-text-fill: white; -fx-font-size: 13px; -fx-font-weight: bold;
+                           -fx-padding: 8 16; -fx-background-radius: 8; -fx-border-radius: 8;
+                           -fx-border-width: 1.5; -fx-border-color: rgba(255,255,255,0.3);
+                           -fx-cursor: hand;"/>
+        </HBox>
+    </top>
+
+    <center>
+        <ScrollPane fitToWidth="true"
+                    style="-fx-background: #f5f5f5; -fx-background-color: transparent; -fx-border-color: transparent;">
+            <VBox spacing="20" style="-fx-padding: 25;">
+
+                <!-- Верхний блок: фото + основное описание -->
+                <HBox spacing="25" alignment="TOP_LEFT">
+                    <!-- Фото -->
+                    <VBox alignment="CENTER"
+                          style="-fx-background-color: white; -fx-padding: 20;
+                                 -fx-background-radius: 12; -fx-border-radius: 12;
+                                 -fx-border-color: #e5e7eb;
+                                 -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.05), 8, 0, 0, 2);">
+                        <ImageView fx:id="componentImage"
+                                   fitWidth="260" fitHeight="260" preserveRatio="true"/>
+                    </VBox>
+
+                    <!-- Основная инфа -->
+                    <VBox spacing="10" HBox.hgrow="ALWAYS"
+                          style="-fx-background-color: white; -fx-padding: 25;
+                                 -fx-background-radius: 12; -fx-border-radius: 12;
+                                 -fx-border-color: #e5e7eb;
+                                 -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.05), 8, 0, 0, 2);">
+                        <Label fx:id="categoryLabel" text=""
+                               style="-fx-text-fill: #3b82f6; -fx-font-size: 13px; -fx-font-weight: bold;"/>
+                        <Label fx:id="nameLabel" text=""
+                               wrapText="true"
+                               style="-fx-text-fill: #111827; -fx-font-size: 22px; -fx-font-weight: bold;"/>
+                        <Label fx:id="manufacturerLabel" text=""
+                               style="-fx-text-fill: #6b7280; -fx-font-size: 13px;"/>
+
+                        <Separator/>
+
+                        <Label text="Минимальная цена"
+                               style="-fx-text-fill: #6b7280; -fx-font-size: 12px;"/>
+                        <HBox spacing="12" alignment="BASELINE_LEFT">
+                            <Label fx:id="minPriceLabel" text="—"
+                                   style="-fx-text-fill: #10b981; -fx-font-size: 32px; -fx-font-weight: bold;"/>
+                            <Label fx:id="offerCountLabel" text=""
+                                   style="-fx-text-fill: #6b7280; -fx-font-size: 13px;"/>
+                        </HBox>
+
+                        <Label fx:id="descriptionLabel" text="" wrapText="true"
+                               style="-fx-text-fill: #374151; -fx-font-size: 13px; -fx-padding: 10 0 0 0;"/>
+                    </VBox>
+                </HBox>
+
+                <!-- Характеристики -->
+                <VBox spacing="10"
+                      style="-fx-background-color: white; -fx-padding: 25;
+                             -fx-background-radius: 12; -fx-border-radius: 12;
+                             -fx-border-color: #e5e7eb;
+                             -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.05), 8, 0, 0, 2);">
+                    <Label text="Характеристики"
+                           style="-fx-text-fill: #111827; -fx-font-size: 17px; -fx-font-weight: bold;"/>
+                    <Separator/>
+                    <VBox fx:id="specsContainer" spacing="0"/>
+                </VBox>
+
+                <!-- Цены магазинов -->
+                <VBox spacing="10"
+                      style="-fx-background-color: white; -fx-padding: 25;
+                             -fx-background-radius: 12; -fx-border-radius: 12;
+                             -fx-border-color: #e5e7eb;
+                             -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.05), 8, 0, 0, 2);">
+                    <HBox alignment="CENTER_LEFT" spacing="15">
+                        <Label text="Цены в магазинах"
+                               style="-fx-text-fill: #111827; -fx-font-size: 17px; -fx-font-weight: bold;"/>
+                        <Region HBox.hgrow="ALWAYS"/>
+                    </HBox>
+                    <Label fx:id="statusLabel" text=""
+                           style="-fx-text-fill: #6b7280; -fx-font-size: 12px;"/>
+                    <Separator/>
+                    <VBox fx:id="pricesContainer" spacing="0"/>
+                </VBox>
+
+            </VBox>
+        </ScrollPane>
+    </center>
+</BorderPane>

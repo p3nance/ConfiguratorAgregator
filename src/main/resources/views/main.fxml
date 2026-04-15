@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.TilePane?>
+<?import javafx.scene.control.Label?>
+
+<BorderPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+            fx:id="mainPane"
+            fx:controller="controllers.MainController">
+
+    <top>
+        <HBox fx:id="headerPane" spacing="16"
+              style="-fx-padding: 14 24; -fx-alignment: center; -fx-background-color: #1e40af;">
+
+            <Label text="🔍 PC Parts Aggregator"
+                   style="-fx-font-size: 22px; -fx-font-weight: bold; -fx-text-fill: white;"/>
+
+            <HBox fx:id="searchBox"
+                  style="-fx-background-color: white; -fx-background-radius: 25;
+                         -fx-padding: 0 15; -fx-spacing: 10; -fx-alignment: center-left;"
+                  HBox.hgrow="ALWAYS">
+                <Label text="🔍" style="-fx-font-size: 16px;"/>
+                <TextField fx:id="searchField"
+                           promptText="Поиск компонентов по названию..."
+                           style="-fx-font-size: 13px; -fx-border-width: 0;
+                                  -fx-background-color: transparent; -fx-padding: 8 0;"
+                           HBox.hgrow="ALWAYS"/>
+            </HBox>
+
+            <Button fx:id="favoritesBtn"
+                    text="Избранное"
+                    style="-fx-background-color: rgba(255,255,255,0.15);
+                           -fx-text-fill: #ffffff;
+                           -fx-font-size: 13px;
+                           -fx-font-weight: bold;
+                           -fx-padding: 10 18;
+                           -fx-background-radius: 10;
+                           -fx-border-radius: 10;
+                           -fx-border-width: 1.5;
+                           -fx-border-color: rgba(255,255,255,0.3);
+                           -fx-cursor: hand;"/>
+
+            <Button fx:id="configuratorBtn"
+                    text="🔧 Конфигуратор"
+                    style="-fx-background-color: linear-gradient(to bottom, #10b981, #059669);
+                           -fx-text-fill: #ffffff;
+                           -fx-font-size: 13px;
+                           -fx-font-weight: bold;
+                           -fx-padding: 10 20;
+                           -fx-background-radius: 10;
+                           -fx-border-radius: 10;
+                           -fx-border-width: 1.5;
+                           -fx-border-color: #34d399;
+                           -fx-cursor: hand;"/>
+        </HBox>
+    </top>
+
+    <left>
+        <VBox fx:id="categoryPane"
+              style="-fx-background-color: #f3f4f6; -fx-border-width: 0 1 0 0; -fx-border-color: #d1d5db;"
+              spacing="0"
+              prefWidth="200">
+            <Label text="Категории"
+                   style="-fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: #6b7280;
+                          -fx-padding: 16 20 8 20;"/>
+            <VBox fx:id="categoryItemsPane"
+                  spacing="6"
+                  style="-fx-padding: 0 8;"/>
+        </VBox>
+    </left>
+
+    <center>
+        <ScrollPane fx:id="contentScroll"
+                    fitToWidth="true"
+                    style="-fx-background-color: #f5f5f5; -fx-background: #f5f5f5;">
+            <TilePane fx:id="productPane"
+                      prefColumns="4"
+                      hgap="16"
+                      vgap="16"
+                      style="-fx-background-color: #f5f5f5; -fx-padding: 24;"/>
+        </ScrollPane>
+    </center>
+
+</BorderPane>
