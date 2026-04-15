@@ -13,7 +13,7 @@
     <top>
         <HBox spacing="15" alignment="CENTER_LEFT"
               style="-fx-padding: 15 25; -fx-background-color: #1e40af;">
-            <Button fx:id="backBtn" text="← Назад"
+            <Button fx:id="backBtn" text="&lt; Назад"
                     style="-fx-background-color: rgba(255,255,255,0.1);
                            -fx-text-fill: white; -fx-font-size: 13px; -fx-font-weight: bold;
                            -fx-padding: 8 16; -fx-background-radius: 8; -fx-cursor: hand;"/>

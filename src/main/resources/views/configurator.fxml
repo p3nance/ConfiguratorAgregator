@@ -10,7 +10,7 @@
             <HBox spacing="15" alignment="CENTER_LEFT"
                   style="-fx-padding: 15 25; -fx-background-color: #1e40af;">
                 <Button fx:id="backBtn"
-                        text="← Назад"
+                        text="&lt; Назад"
                         style="-fx-background-color: rgba(255,255,255,0.1);
                                -fx-text-fill: white;
                                -fx-font-size: 13px;
@@ -88,7 +88,7 @@
                                    wrapText="true"
                                    style="-fx-font-size: 11px; -fx-text-fill: #9ca3af;"/>
 
-                            <Button fx:id="viewBuildDetailsBtn" text="🔍 Открыть карточку первого компонента" maxWidth="Infinity"
+                            <Button fx:id="viewBuildDetailsBtn" text="Сравнить цены" maxWidth="Infinity"
                                     style="-fx-background-color: linear-gradient(to bottom, #3b82f6, #1d4ed8);
                                            -fx-text-fill: #ffffff;
                                            -fx-font-size: 13px;
