@@ -54,18 +54,12 @@ src/main/resources/
    cd ConfiguratorAgregator
    ```
 
-2. Создай файл `.env` в корне проекта на основе `base.env`:
-   ```env
-   SUPABASE_URL=https://your-project.supabase.co
-   SUPABASE_KEY=your-anon-key
-   ```
-
-3. Примени схему БД:
+2. Примени схему БД:
    ```bash
    # Выполни sql/schema.sql в Supabase SQL Editor
    ```
 
-4. Запусти приложение:
+3. Запусти приложение:
    ```bash
    ./gradlew run
    ```
