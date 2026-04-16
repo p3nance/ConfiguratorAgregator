@@ -18,6 +18,7 @@ import javafx.scene.layout.*;
 
 import java.net.URL;
 import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * Главный контроллер: каталог компонентов + кнопка конфигуратора.
@@ -158,18 +159,17 @@ public class MainController implements Initializable {
     private void applyFilter() {
         List<Component> filtered;
         synchronized (allComponents) {
-            filtered = new ArrayList<>(allComponents);
-        }
-        if (!"Все".equals(selectedCategory)) {
-            filtered.removeIf(c -> c.getCategory() == null
-                    || !c.getCategory().equalsIgnoreCase(selectedCategory));
-        }
-        if (!currentSearch.isEmpty()) {
-            filtered.removeIf(c -> {
-                String name = c.getName() == null ? "" : c.getName().toLowerCase();
-                String man = c.getManufacturer() == null ? "" : c.getManufacturer().toLowerCase();
-                return !name.contains(currentSearch) && !man.contains(currentSearch);
-            });
+            filtered = allComponents.stream()
+                    .filter(c -> "Все".equals(selectedCategory)
+                            || (c.getCategory() != null
+                            && c.getCategory().equalsIgnoreCase(selectedCategory)))
+                    .filter(c -> {
+                        if (currentSearch.isEmpty()) return true;
+                        String name = c.getName() == null ? "" : c.getName().toLowerCase();
+                        String man  = c.getManufacturer() == null ? "" : c.getManufacturer().toLowerCase();
+                        return name.contains(currentSearch) || man.contains(currentSearch);
+                    })
+                    .collect(Collectors.toList());
         }
         showComponents(filtered);
     }
