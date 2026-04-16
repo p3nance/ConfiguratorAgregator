@@ -39,6 +39,7 @@ public class ConfiguratorController {
     @FXML private Label overlayTitle;
     @FXML private Button closeOverlayBtn;
     @FXML private Button clearSelectionBtn;
+    @FXML private Button overlaySortBtn;
     @FXML private TilePane overlayProductsGrid;
 
     private MainController mainController;
@@ -185,6 +186,14 @@ public class ConfiguratorController {
         }
     }
 
+    private void updateOverlaySortButton() {
+        if (overlaySortBtn != null) {
+            overlaySortBtn.setText(overlaySort == SortMode.BY_PRICE
+                    ? "Сортировка: по цене"
+                    : "Сортировка: по названию");
+        }
+    }
+
     private void openOverlayForCategory(String category) {
         currentEditingCategory = category;
         overlaySort = SortMode.BY_PRICE; // default overlay sort
@@ -195,6 +204,12 @@ public class ConfiguratorController {
         if (cartStatusBox != null) {
             cartStatusBox.setVisible(false);
             cartStatusBox.setManaged(false);
+            updateOverlaySortButton();
+            overlaySortBtn.setOnAction(e -> {
+                overlaySort = overlaySort == SortMode.BY_PRICE ? SortMode.BY_NAME : SortMode.BY_PRICE;
+                updateOverlaySortButton();
+                renderOverlayProducts(currentEditingCategory);
+            });
         }
     }
 

@@ -126,6 +126,10 @@
             <HBox alignment="CENTER_LEFT" spacing="10" style="-fx-padding: 0 0 15 0;">
                 <Label fx:id="overlayTitle" text="Выберите компонент" style="-fx-font-size: 20px; -fx-font-weight: bold;"/>
                 <Region HBox.hgrow="ALWAYS"/>
+                <Button fx:id="overlaySortBtn" text="Сортировка: по цене"
+                        style="-fx-font-size: 11px; -fx-background-color: #e5e7eb;
+                               -fx-background-radius: 6; -fx-cursor: hand;
+                               -fx-padding: 5 12;"/>
                 <Button text="✕ Закрыть" fx:id="closeOverlayBtn"
                         style="-fx-background-color: transparent; -fx-text-fill: #ef4444; -fx-font-weight: bold; -fx-cursor: hand;"/>
             </HBox>
